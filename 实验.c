@@ -1,23 +1,22 @@
-//实验	有一个已经排好序的数组，要求输入一个数后，按原来排序的规律将它插入数组中
+//实验  	输出一个含有10行的杨辉三角形
+#include <stdio.h>
 
-// 软件2316 朱昱杰
-#include"stdio.h"
-
-int main() {
-	int arr[8] = { 1,2,3,4,5,7,8 };
-	int m;
-	scanf_s("%d", &m);
-	for (int i = 0; i < 8; i++) {
-		if (arr[i] >= m) {
-			for (int j = 7; j > i; j--) {
-				arr[j] = arr[j - 1];
-			}
-			arr[i] = m;
-			break;
+int main()
+{
+	int n = 10;
+	int data[30] = { 1 };
+	printf("1\n");//直接打印第一行
+	for (int i = 1; i < n; i++)//从第二行开始
+	{
+		for (int j = i; j > 0; j--)//从后往前填，避免上一行的数据在使用前就被覆盖
+		{
+			data[j] += data[j - 1];
 		}
-	}
-	for (int i = 0; i < 8; i++) {
-		printf("%d ", arr[i]);
+		for (int j = 0; j <= i; j++)
+		{
+			printf("%d ", data[j]);
+		}
+		printf("\n");
 	}
 	return 0;
 }
