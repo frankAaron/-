@@ -1,24 +1,50 @@
+//#include <stdio.h>
+//int main() {
+//	// arr数组内部为下标，count代表是否是3的倍数，n为总人数，t为每轮排除3的倍数后的人数
+//	int arr[256], count = 0,n,t;
+//	printf("input num:");
+//	scanf("%d", &n);
+//	t = n;
+//	for (int i = 1; i <= n; i++) {
+//		arr[i] = i;
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		if (arr[i] != 0) {
+//			count++;
+//		}
+//		if (count == 3) {
+//			arr[i] = 0;
+//			count = 0;
+//			t--;
+//		}
+//		if (i == n) {
+//			i = 0;
+//		}
+//		if (t == 1) {
+//			break;
+//		}
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		if (arr[i] != 0) {
+//			printf("%d", arr[i]);
+//		}
+//	}
+//}
 #include<stdio.h>
-int BinSearch(int arr[], int len, int key)                          //折半查找法（二分法）
-{
-	int low = 0;                         //定义初始最小
-	int high = len - 1;                 //定义初始最大
-	int mid;                            //定义中间值
-	while (low <= high)
-	{
-		mid = (low + high) / 2;              //找中间值
-		if (key == arr[mid])               //判断min与key是否相等
-			return mid;
-		else if (key > arr[mid])             //如果key>mid  则新区间为[mid+1,high]
-			low = mid + 1;
-		else                                       //如果key<mid  则新区间为[low,mid-1]
-			high = mid - 1;
+int gcd(int m,int n) {
+	if (n == 0) {
+		return m;
 	}
-	return -1;                             //如果数组中无目标值key，则返回 -1 ；
+	else
+		return gcd(n, m % n);
 }
-int main()
-{
-	int arr[] = { 1,2,3,4,5,6,7,8,9,10,11 };                      //首先要对数组arr进行排序
-	printf("%d \n", BinSearch(arr, (sizeof(arr) / sizeof(arr[0])), 10));
-	return 0;
+int cd(int m,int n) {
+	return m * n / gcd(m, n);
+}
+
+int main() {
+	int m, n;
+	scanf("%d,%d",&m,&n);
+	printf("%d\n",gcd(m, n));
+	printf("%d",cd(m, n));
 }
